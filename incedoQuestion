@@ -1,0 +1,27 @@
+public class Account 
+{
+	private long accId;
+	private double balance;
+	private Customer customer;
+
+	getter()
+	{
+
+	}
+
+	setter()
+	{
+
+
+	}
+
+}
+
+class Customer
+{
+	private long customerId;
+	private Address address;
+}
+
+
+

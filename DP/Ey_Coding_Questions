@@ -1,0 +1,343 @@
+Given an interface named "OnlineAccount" that models the account of popular online video streaming platforms, perform the operations listed below. The interface "OnlineAccount" consists of the basePrice, regularMoviePrice, and exclusiveMoviePrice.
+
+
+
+
+
+
+
+In order to complete this challenge, you need to implement an incomplete class named "Account" which implements the "OnlineAccount" interface as well as the "Comparable<Account>" interface.
+
+
+
+
+
+
+
+Class Account has two attributes to keep track of the number of movies watched:
+
+
+
+Integer noOfRegularMovies
+
+Integer noOfExclusiveMovies
+
+String ownerName
+
+ 
+
+
+
+Methods to complete for class Account:
+
+
+
+ Add a parameterized constructor that initializes the attributes ownerName, numberOfRegularMovies, and numberOfExclusiveMovies.
+
+ Int monthlyCost() => This method returns the monthly cost for the account. [Monthly Cost = base price + noOfRegularMovies*regularMoviePrice + noOfExclusiveMovies*exclusiveMoviePrice]
+
+Override the compareTo method of the Comparable interface such that two accounts can be compared based on their monthly cost.
+
+String toString() which returns => "Owner is [ownerName] and monthly cost is [monthlyCost] USD."
+
+
+
+
+##########################################################################################################################################################################
+
+
+
+
+A ride hailing company has their DB structured in 3 major tables as described in SCHEMA below.
+
+
+
+Write a query to fetch the city names along with earnings from each city. 'Earnings' are calculated as the sum of fares of all the rides taken in that city. The output should be structured as: cities.name earnings
+
+
+
+ 
+
+
+
+The output is sorted ascending by earnings, then ascending by the city name.
+
+
+
+##########################################################################################################################################################################
+
+
+A REST API contains information about food outlets across multiple cities. Given the city name, and maximum cost for 2 persons, the goal is to use the API to get the list of food outlets that belong to this city and have an estimated cost less than or equal to given cost. The API returns paginated data.
+
+
+
+ 
+
+
+
+To access the information, perform an HTTP GET request to:
+
+
+
+https://jsonmock.hackerrank.com/api/food_outlets?city=<city>&page=<pageNumber>
+
+
+
+where <city> is the city to get the food outlets for and <pageNumber> is an integer that denotes the page of the results to return.
+
+
+
+ 
+
+
+
+For example, a GET request to
+
+
+
+https://jsonmock.hackerrank.com/api/food_outlets?city=Seattle&page=2
+
+
+
+returns data associated with city Seattle, and on the second page of the results.
+
+
+
+ 
+
+
+
+Similarly, a GET request to
+
+
+
+https://jsonmock.hackerrank.com/api/food_outlets?city=Houston&page=1
+
+
+
+returns data associated with city Houston, and on the first page of the results.
+
+
+
+ 
+
+
+
+The response to such a request is a JSON with the following 5 fields:
+
+
+
+page: The current page of the results.
+
+per_page: The maximum number of records returned per page.
+
+total: The total number of records in the database.
+
+total_pages: The total number of pages with results.
+
+data: Either an empty array or an array of outlet objects. Each object has the following schema:
+
+city: city we queried for where the outlet is located [STRING]
+
+
+
+name: name of the outlet [STRING]
+
+
+
+estimated_cost: estimated cost for 2 persons [INTEGER]
+
+
+
+user_rating:
+
+
+
+average_rating: average rating of the outlet [FLOAT]
+
+
+
+votes: total votes for the outlet [INTEGER]
+
+
+
+id: unique identifier of the outlet [INTEGER]
+
+
+
+
+##########################################################################################################################################################################
+
+
+
+
+
+Given three integers, i, j, and k, a sequence sum to be the value of i + (i + 1) + (i + 2) + (i + 3) + … + j + (j − 1) + (j − 2) + (j − 3) + … + k (increment from i until it equals j, then decrement from j until it equals k). Given values i, j, and k, calculate the sequence sum as described.
+
+
+
+ 
+
+
+
+Example
+
+
+
+i = 5
+
+
+
+j = 9
+
+
+
+k = 6
+
+
+
+ 
+
+
+
+Sum all the values from i to j and back to k: 5 + 6 + 7 + 8 + 9 + 8 + 7 + 6 = 56.
+
+
+
+ 
+
+
+
+Function Description 
+
+
+
+Complete the function getSequenceSum in the editor below.
+
+
+
+ 
+
+
+
+getSequenceSum has the following parameter(s):
+
+
+
+    int i, int j, int k:  three integers
+
+
+
+ 
+
+
+
+Return
+
+
+
+    long: the value of the sequence sum
+
+
+
+ 
+
+
+
+Constraints
+
+
+
+-108 ≤ i, j, k ≤ 108
+
+i, k ≤ j
+
+
+################################################################
+################################################################
+
+static long getSequenceSum(int i, int j, int k) {
+
+
+
+
+
+   int m,n,sum1=0,sum2;
+
+   for(m=i;m<=j;m++)
+
+   {
+
+       sum1=sum1+m;
+
+   }
+
+   sum2=sum1;
+
+   for(n=j;n>k;n--)
+
+   {
+
+       sum2=sum2+(n-1);
+
+   }
+
+   return sum2;
+    }
+
+
+
+
+
+
+
+    ################################################################
+
+
+    int noOfRegularMovies, noOfExclusiveMovies;
+    String ownerName;
+
+    // 1) Add a parameterized constructor that initializes the attributes noOfRegularMovies and noOfExclusiveMovies.
+
+public Account(String owner, int regMovies, int exclMovies) {
+this.ownerName = owner;
+this.noOfRegularMovies = regMovies;
+this.noOfExclusiveMovies = exclMovies;
+}
+
+    // 2. This method returns the monthly cost for the account.
+    public int monthlyCost() {
+        return basePrice + noOfRegularMovies * regularMoviePrice + noOfExclusiveMovies * exclusiveMoviePrice;
+
+    }
+
+    // 3. Override the compareTo method of the Comparable interface such that two accounts can be compared based on their monthly cost.
+    public int compareTo(Account account) {
+        return this.monthlyCost() - account.monthlyCost();
+    }
+    
+    // 4. Returns "Owner is [ownerName] and monthly cost is [monthlyCost] USD."
+    public String toString() {
+        return "Owner is " + ownerName + " and monthly cost is " + this.monthlyCost() + " USD.";
+
+
+    }
+
+
+    ###################################################################
+
+
+    select c.name, SUM(r.fare) from CITIES c
+  left join USERS u on c.id=u.city_id 
+  left join RIDES r on u.id=r.user_id
+  GROUP BY c.name
+ORDER BY SUM(r.fare) ASC;
+
+
+
+##########################################################################
+
+
+
+
+https://github.com/john-d-murphy/hackerRank/blob/master/Cracking%20The%20Coding%20Interview/Java/05.Stacks.BalancedBrackets.java
